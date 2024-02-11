@@ -1,13 +1,14 @@
 import streamlit as st
-import json
-import random
-from chatgpt_with_streamlit.GetLanguageModel.call_llm import get_chain
 from streamlit_utils import save_chat_history, st_stream_from_stdout
+
+from chatgpt_with_streamlit.GetLanguageModel.call_llm import get_chain
+
+
 def run():
     sidebar = st.sidebar
     with sidebar:
-        reset_chat_btn = st.button("Reset Chat",use_container_width=True)
-    
+        reset_chat_btn = st.button("Reset Chat", use_container_width=True)
+
     if reset_chat_btn:
         if len(st.session_state.messages) != 0:
             save_chat_history(st.session_state.messages)
@@ -19,16 +20,15 @@ def run():
     with cols[4]:
         st.image(image_path, width=100)
 
-
-    st.markdown("<h1 style='text-align: center;'>How can I help you today?</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>How can I help you today?</h1>",
+                unsafe_allow_html=True)
     if "messages" not in st.session_state:
         st.session_state.messages = []
-    
+
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    
     if user_input := st.chat_input("Message ChatGPT..."):
         st.session_state.messages.append(
             {"role": "user", "content": user_input}
@@ -37,7 +37,6 @@ def run():
         with st.chat_message("user"):
             st.markdown(user_input)
 
-        
         with st.chat_message("ai"):
             with st.spinner("Thinking..."):
                 output = st.empty()
@@ -47,7 +46,6 @@ def run():
                     st.session_state.messages.append(
                         {"role": "ai", "content": response['text']}
                     )
-
 
 
 if __name__ == "__main__":

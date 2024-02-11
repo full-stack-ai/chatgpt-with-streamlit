@@ -2,13 +2,11 @@ from dotenv import find_dotenv, load_dotenv
 from langchain.callbacks import StreamingStdOutCallbackHandler
 from langchain.callbacks.manager import CallbackManager
 from langchain.chains import LLMChain
+from langchain.prompts.chat import (ChatPromptTemplate,
+                                    HumanMessagePromptTemplate,
+                                    SystemMessagePromptTemplate)
 from langchain_community.llms import LlamaCpp
 from langchain_openai import ChatOpenAI
-from langchain.prompts.chat import (
-    ChatPromptTemplate,
-    HumanMessagePromptTemplate,
-    SystemMessagePromptTemplate
-)
 
 system_message = """ You are a respectful AI assistant and your role is to address user's
 question to the best of your knowledge. You follow up with the human if they need help with
@@ -64,7 +62,7 @@ def setup_llm_chain(llm):
         prompt=chat_prompt,
     ).with_config({
         "run_name": "llm-chat"
-        })
+    })
     return llm_chain
 
 
