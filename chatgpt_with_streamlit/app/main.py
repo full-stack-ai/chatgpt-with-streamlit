@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_utils import save_chat_history, st_stream_from_stdout
+from chatgpt_with_streamlit.app.streamlit_utils import save_chat_history, st_stream_from_stdout
 
 from chatgpt_with_streamlit.GetLanguageModel.call_llm import get_chain
 
