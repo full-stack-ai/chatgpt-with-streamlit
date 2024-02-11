@@ -6,3 +6,5 @@
 
 # json logs
 /*.json
+
+__pycache__/
