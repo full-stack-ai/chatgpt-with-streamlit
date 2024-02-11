@@ -1,4 +1,8 @@
 # python virtual environment
 .venv
 
-.vscode
+
+.env
+
+# json logs
+/*.json
