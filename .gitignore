@@ -8,3 +8,9 @@
 /*.json
 
 __pycache__/
+
+
+# LLM models
+models/
+
+.DS_Store
